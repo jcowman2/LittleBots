@@ -53,8 +53,17 @@ public class PlayerChainManager : MonoBehaviour {
 
     void pickupLinkable(LinkBehavior link) {
         if (links.Count == 0) {
+            link.transform.eulerAngles = new Vector3(0, 0, 0);
             link.transform.position = transform.position + relativeStartPoint;
             link.MakeLink(rb);
+        } else {
+            LinkBehavior topLink = links[links.Count - 1];
+            link.transform.eulerAngles = topLink.transform.eulerAngles;
+            link.transform.position = topLink.transform.position + link.height * topLink.transform.up;
+            Debug.Log(link.transform.position);
+            link.MakeLink(rb);
         }
+
+        links.Add(link);
     }
 }

@@ -18,7 +18,6 @@ public class LinkBehavior : MonoBehaviour {
 	}
 	
 	public void MakeLink(Rigidbody2D link) {
-        transform.eulerAngles = new Vector3(0, 0, 0);
         hinge.connectedBody = link;
         hinge.enabled = true;
         state = R.LINKED;
