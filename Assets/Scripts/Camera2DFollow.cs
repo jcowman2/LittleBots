@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+//Originally retrieved from UnityStandardAssets, modified by Joe Cowman
 namespace UnityStandardAssets._2D
 {
     public class Camera2DFollow : MonoBehaviour
