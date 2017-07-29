@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerChainManager : MonoBehaviour {
 
+    public float firePower;
     public Vector3 relativeStartPoint;
 
     [ReadOnly]
@@ -12,8 +13,9 @@ public class PlayerChainManager : MonoBehaviour {
     [ReadOnly]
     public List<LinkBehavior> adjacentLinkables;
 
-    private bool pickupPressed;
     private Rigidbody2D rb;
+    private bool pickupPressed;
+    private bool firePressed;
 
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -23,6 +25,10 @@ public class PlayerChainManager : MonoBehaviour {
         if (Input.GetButtonDown("Pickup")) {
             pickupPressed = true;
         }
+
+        if (Input.GetButtonDown("Fire")) {
+            firePressed = true;
+        }
     }
 
     void FixedUpdate () {
@@ -30,10 +36,16 @@ public class PlayerChainManager : MonoBehaviour {
             pickupPressed = false;
 
             if (adjacentLinkables.Count > 0) {
-                pickupLinkable(adjacentLinkables[0]);
-                adjacentLinkables.RemoveAt(0);
+                pickupLinkable();
             }
-            
+        }
+
+        if (firePressed) {
+            firePressed = false;
+
+            if (links.Count > 0) {
+                launchLink();
+            }
         }
     }
 
@@ -51,7 +63,10 @@ public class PlayerChainManager : MonoBehaviour {
         }
     }
 
-    void pickupLinkable(LinkBehavior link) {
+    void pickupLinkable() {
+        LinkBehavior link = adjacentLinkables[0];
+        adjacentLinkables.RemoveAt(0);
+
         if (links.Count == 0) {
             link.transform.eulerAngles = new Vector3(0, 0, 0);
             link.transform.position = transform.position + relativeStartPoint;
@@ -65,5 +80,9 @@ public class PlayerChainManager : MonoBehaviour {
         }
 
         links.Add(link);
+    }
+
+    void launchLink() {
+
     }
 }
