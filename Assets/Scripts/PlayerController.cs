@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float maxSpeed = 10f;
+    [ReadOnly]
+    public bool grounded = false;
 
     private Rigidbody2D rb;
 
