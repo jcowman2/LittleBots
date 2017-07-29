@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerChainManager : MonoBehaviour {
 
     public float firePower;
+    public float reactiveForceMultiplier = 1f; //how much stronger launches are felt to the player
     public Vector3 relativeStartPoint;
 
     [ReadOnly]
@@ -83,6 +84,21 @@ public class PlayerChainManager : MonoBehaviour {
     }
 
     void launchLink() {
+        LinkBehavior link = links[links.Count - 1];
+        links.RemoveAt(links.Count - 1);
 
+        link.BreakLink();
+
+        Vector2 forceVector = link.transform.up * firePower;
+        link.GetComponent<Rigidbody2D>().AddForceAtPosition(forceVector, link.transform.position, ForceMode2D.Impulse);
+
+        forceVector.Scale(new Vector2(-1, -1));
+        if (links.Count > 0) {
+            Rigidbody2D nextLinkRigidBody = links[links.Count - 1].GetComponent<Rigidbody2D>();
+            nextLinkRigidBody.AddForceAtPosition(forceVector, link.transform.position, ForceMode2D.Impulse);
+        }
+
+        forceVector *= reactiveForceMultiplier;
+        rb.AddForce(forceVector, ForceMode2D.Impulse);
     }
 }
