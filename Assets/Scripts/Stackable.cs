@@ -14,4 +14,9 @@ public class Stackable : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void SetInTransit() {
+        Debug.Log(name + " moved now in transit.");
+        state = R.IN_TRANSIT;
+    }
 }
