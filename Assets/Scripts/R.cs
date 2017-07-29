@@ -6,4 +6,8 @@ public class R {
     public const string IN_TRANSIT = "In Transit";
     public const string STACKED = "Stacked";
 
+    //Linkable States
+    public const string UNLINKED = "Unlinked";
+    public const string LINKED = "Linked";
+
 }
