@@ -23,9 +23,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Update () {
-        if (grounded && Input.GetAxis("Jump") > 0) {
+        if (grounded && Input.GetButtonDown("Jump")) {
             jumped = true;
-            //rb.AddForce(new Vector2(0, jumpForce));
         }
     }
 
