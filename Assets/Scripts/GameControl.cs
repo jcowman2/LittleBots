@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour {
 
+    [ReadOnly]
+    public GameObject player;
+
     //** Camera Endpoints **//
     [ReadOnly]
     public Vector3 topLeft;
@@ -21,6 +24,7 @@ public class GameControl : MonoBehaviour {
     private new Camera camera;
 
     void Start () {
+        player = GameObject.FindGameObjectWithTag(R.PLAYER);
         camera = GameObject.FindGameObjectWithTag(R.MAIN_CAMERA).GetComponent<Camera>();
         UpdateCorners();
     }
@@ -41,6 +45,8 @@ public class GameControl : MonoBehaviour {
 
         if (obj.CompareTag(R.PLAYER)) {
             OnPlayerFallOutMap();
+        } else if (obj.CompareTag(R.LITTLEBOT)) {
+            GameObject.Destroy(obj);
         }
     }
 
