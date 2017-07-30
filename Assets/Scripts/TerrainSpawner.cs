@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TerrainSpawner : MonoBehaviour {
 
+    public new Camera camera;
+
     public Transform terrainContainer;
     public Transform platformPrefab;
     public Transform fallZonePrefab;
@@ -36,12 +38,12 @@ public class TerrainSpawner : MonoBehaviour {
     [ReadOnly]
     public Vector3 rightEnd;
 
-    private new Camera camera;
+    //private new Camera camera;
     private Transform leftMostPlatform;
     private Transform rightMostPlatform;
 
     void Start () {
-        camera = GetComponent<Camera>();
+        //camera = GetComponent<Camera>();
         UpdateCorners();
 
         Transform startingPlatform = terrainContainer.Find("StartingPlatform");
