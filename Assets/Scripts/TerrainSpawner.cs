@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TerrainSpawner : MonoBehaviour {
 
-    public new Camera camera;
-
     public Transform terrainContainer;
     public Transform platformPrefab;
     public Transform fallZonePrefab;
@@ -18,19 +16,6 @@ public class TerrainSpawner : MonoBehaviour {
     public Vector2 platformVertRange;
     public Vector2 platformWidthRange; //Scale, not units
 
-    //** Camera Endpoints **//
-    [ReadOnly]
-    public Vector3 topLeft;
-
-    [ReadOnly]
-    public Vector3 bottomLeft;
-
-    [ReadOnly]
-    public Vector3 topRight;
-
-    [ReadOnly]
-    public Vector3 bottomRight;
-
     //** Platform Bounds **//
     [ReadOnly]
     public Vector3 leftEnd;
@@ -38,13 +23,12 @@ public class TerrainSpawner : MonoBehaviour {
     [ReadOnly]
     public Vector3 rightEnd;
 
-    //private new Camera camera;
+    private GameControl game;
     private Transform leftMostPlatform;
     private Transform rightMostPlatform;
 
     void Start () {
-        //camera = GetComponent<Camera>();
-        UpdateCorners();
+        game = GetComponent<GameControl>();
 
         Transform startingPlatform = terrainContainer.Find("StartingPlatform");
         Vector3 startingEnds = GetPlatformCorners(startingPlatform.GetComponent<BoxCollider2D>());
@@ -59,23 +43,15 @@ public class TerrainSpawner : MonoBehaviour {
 	}
 	
 	void Update () {
-        UpdateCorners();
 
-        if (topRight.x + (topRight.x - topLeft.x) > rightEnd.x) {
+        if (game.topRight.x + (game.topRight.x - game.topLeft.x) > rightEnd.x) {
             GeneratePlatformRight();
         }
 
-        if (topLeft.x - (topRight.x - topLeft.x) < leftEnd.x) {
+        if (game.topLeft.x - (game.topRight.x - game.topLeft.x) < leftEnd.x) {
             GeneratePlatformLeft();
         }
 	}
-
-    void UpdateCorners() {
-        topLeft = camera.ViewportToWorldPoint(new Vector3(0, 1));
-        bottomLeft = camera.ViewportToWorldPoint(new Vector3(0, 0));
-        topRight = camera.ViewportToWorldPoint(new Vector3(1, 1));
-        bottomRight = camera.ViewportToWorldPoint(new Vector3(1, 0));
-    }
 
     //x = leftX, y = y, z = rightX (so that two coords in a flat line can be returned)
     Vector3 GetPlatformCorners(BoxCollider2D box) {
@@ -181,12 +157,6 @@ public class TerrainSpawner : MonoBehaviour {
 
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.yellow;
-
-        //Camera Corners
-        Gizmos.DrawSphere(topLeft, 0.5f);
-        Gizmos.DrawSphere(bottomLeft, 0.5f);
-        Gizmos.DrawSphere(topRight, 0.5f);
-        Gizmos.DrawSphere(bottomRight, 0.5f);
 
         //Platform Ends
         Gizmos.DrawSphere(leftEnd, 0.25f);
