@@ -46,12 +46,17 @@ public class GameControl : MonoBehaviour {
         if (obj.CompareTag(R.PLAYER)) {
             OnPlayerFallOutMap();
         } else if (obj.CompareTag(R.LITTLEBOT)) {
-            GameObject.Destroy(obj);
+            OnLittlebotFallOutMap(obj);
         }
     }
 
     private void OnPlayerFallOutMap() {
         RestartLevel();
+    }
+
+    private void OnLittlebotFallOutMap(GameObject obj) {
+        if (obj.GetComponent<LinkBehavior>().state != R.LINKED)
+            GameObject.Destroy(obj);
     }
 
     private void RestartLevel() {
