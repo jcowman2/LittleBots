@@ -52,7 +52,7 @@ public class TerrainSpawner : MonoBehaviour {
         leftMostPlatform = startingPlatform;
         rightMostPlatform = startingPlatform;
 
-        SetFallZone(startingPlatform, R.RIGHT);
+        //SetFallZone(startingPlatform, R.RIGHT);
 	}
 	
 	void Update () {
@@ -110,6 +110,8 @@ public class TerrainSpawner : MonoBehaviour {
         newPlatform.parent = terrainContainer;
         newPlatform.gameObject.SetActive(true);
 
+        SetFallZone(rightMostPlatform, R.RIGHT, newPlatform);
+
         rightEnd = GetPlatformRightCorner(newCollider);
         rightMostPlatform = newPlatform;
     }
@@ -132,6 +134,8 @@ public class TerrainSpawner : MonoBehaviour {
         newPlatform.parent = terrainContainer;
         newPlatform.gameObject.SetActive(true);
 
+        SetFallZone(leftMostPlatform, R.LEFT, newPlatform);
+
         leftEnd = GetPlatformLeftCorner(newCollider);
         leftMostPlatform = newPlatform;
     }
@@ -141,19 +145,23 @@ public class TerrainSpawner : MonoBehaviour {
         newFallZone.gameObject.SetActive(false);
 
         BoxCollider2D boxCollider = newFallZone.GetComponent<BoxCollider2D>();
-        //Bounds newBounds = new Bounds();
 
         if (direction == R.RIGHT) {
             Vector3 originCorner = GetPlatformRightCorner(originPlatform.GetComponent<BoxCollider2D>());
 
-            float width = (otherPlatform != null) ? fallZoneDefaultWidth : fallZoneDefaultWidth;
+            float width = (otherPlatform == null) ? fallZoneDefaultWidth :
+                                                    GetPlatformLeftCorner(otherPlatform.GetComponent<BoxCollider2D>()).x - originCorner.x; //Extend fallzone to edge of next platform, if exists
             boxCollider.size = new Vector2(width, fallZoneHeight);
-
             newFallZone.position = new Vector2(originCorner.x + width / 2,
                                                originCorner.y - fallZoneStartPoint - fallZoneHeight / 2);
-
         } else if (direction == R.LEFT) {
+            Vector3 originCorner = GetPlatformLeftCorner(originPlatform.GetComponent<BoxCollider2D>());
 
+            float width = (otherPlatform == null) ? fallZoneDefaultWidth :
+                                                    originCorner.x - GetPlatformRightCorner(otherPlatform.GetComponent<BoxCollider2D>()).x;
+            boxCollider.size = new Vector2(width, fallZoneHeight);
+            newFallZone.position = new Vector2(originCorner.x - width / 2,
+                                               originCorner.y - fallZoneStartPoint - fallZoneHeight / 2);
         } else {
             throw new System.Exception("Direction must be RIGHT or LEFT in SetFallZone()");
         }
