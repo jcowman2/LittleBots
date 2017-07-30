@@ -12,6 +12,7 @@ public class TerrainSpawner : MonoBehaviour {
     public Vector2 platformWidthRange; //Scale, not units
 
     public bool spawnPlatformRight;
+    public bool spawnPlatformLeft;
 
     //** Camera Endpoints **//
     [ReadOnly]
@@ -56,6 +57,11 @@ public class TerrainSpawner : MonoBehaviour {
         if (spawnPlatformRight) {
             spawnPlatformRight = false;
             GeneratePlatformRight();
+        }
+
+        if (spawnPlatformLeft) {
+            spawnPlatformLeft = false;
+            GeneratePlatformLeft();
         }
 	}
 
@@ -104,6 +110,28 @@ public class TerrainSpawner : MonoBehaviour {
 
         rightMostPlatform = newPlatform;
         rightEnd = GetPlatformRightCorner(newCollider);
+    }
+
+    void GeneratePlatformLeft () {
+        Transform newPlatform = Object.Instantiate(platformPrefab);
+        newPlatform.gameObject.SetActive(false);
+        newPlatform.localScale = new Vector2(newPlatform.localScale.x * Random.Range(platformWidthRange.x, platformWidthRange.y),
+                                             newPlatform.localScale.y);
+
+        BoxCollider2D newCollider = newPlatform.GetComponent<BoxCollider2D>();
+        float width = newCollider.size.x * newPlatform.localScale.x;
+        float height = newCollider.size.y * newPlatform.localScale.y;
+
+        float margin = Random.Range(platformSpaceRange.x, platformSpaceRange.y);
+        float vertStep = Random.Range(platformVertRange.x, platformVertRange.y);
+
+        newPlatform.position = new Vector2(leftEnd.x - width / 2 - margin,
+                                           leftEnd.y - height / 2 + vertStep);
+
+        newPlatform.gameObject.SetActive(true);
+
+        leftMostPlatform = newPlatform;
+        leftEnd = GetPlatformLeftCorner(newCollider);
     }
 
     void OnDrawGizmosSelected() {
