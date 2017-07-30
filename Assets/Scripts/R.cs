@@ -9,4 +9,9 @@ public class R {
     public const string UNLINKED = "Unlinked";
     public const string LINKED = "Linked";
 
+    //Tags
+    public const string PLAYER = "Player";
+    public const string LITTLEBOT = "Littlebot";
+    public const string GAME_CONTROLLER = "GameController";
+
 }
