@@ -1,10 +1,9 @@
 ﻿
 public class R {
 
-    //Stackable States
-    public const string NOT_STACKED = "Not Stacked";
-    public const string IN_TRANSIT = "In Transit";
-    public const string STACKED = "Stacked";
+    //Directions
+    public const string RIGHT = "Right";
+    public const string LEFT = "Left";
 
     //Linkable States
     public const string UNLINKED = "Unlinked";
