@@ -13,6 +13,10 @@ public class EntitySpawner : MonoBehaviour {
     public Vector2 littlebotSpawnForceRange;
     public Vector2 littlebotSpawnTorqueRange;
     public bool littlebotCanRotateOnSpawn;
+    public int littlebotSpawnQuantity;
+    public float littlebotSpawnTime;
+    [ReadOnly]
+    public float littlebotTimer;
 
     private GameControl game;
 
@@ -24,6 +28,12 @@ public class EntitySpawner : MonoBehaviour {
 		if (spawnLittlebot) {
             spawnLittlebot = false;
             SpawnLittlebot();
+        }
+
+        littlebotTimer += Time.deltaTime;
+        if (littlebotTimer >= littlebotSpawnTime) {
+            SpawnLittlebot(littlebotSpawnQuantity);
+            littlebotTimer = 0;
         }
 	}
 
