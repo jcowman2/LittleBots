@@ -11,9 +11,6 @@ public class TerrainSpawner : MonoBehaviour {
     public Vector2 platformVertRange;
     public Vector2 platformWidthRange; //Scale, not units
 
-    public bool spawnPlatformRight;
-    public bool spawnPlatformLeft;
-
     //** Camera Endpoints **//
     [ReadOnly]
     public Vector3 topLeft;
@@ -35,8 +32,6 @@ public class TerrainSpawner : MonoBehaviour {
     public Vector3 rightEnd;
 
     private new Camera camera;
-    private Transform leftMostPlatform;
-    private Transform rightMostPlatform;
 
     void Start () {
         camera = GetComponent<Camera>();
@@ -46,21 +41,16 @@ public class TerrainSpawner : MonoBehaviour {
         Vector3 startingEnds = GetPlatformCorners(startingPlatform.GetComponent<BoxCollider2D>());
         leftEnd = new Vector3(startingEnds.x, startingEnds.y);
         rightEnd = new Vector3(startingEnds.z, startingEnds.y);
-
-        leftMostPlatform = startingPlatform;
-        rightMostPlatform = startingPlatform;
 	}
 	
 	void Update () {
         UpdateCorners();
 
-        if (spawnPlatformRight) {
-            spawnPlatformRight = false;
+        if (topRight.x + (topRight.x - topLeft.x) > rightEnd.x) {
             GeneratePlatformRight();
         }
 
-        if (spawnPlatformLeft) {
-            spawnPlatformLeft = false;
+        if (topLeft.x - (topRight.x - topLeft.x) < leftEnd.x) {
             GeneratePlatformLeft();
         }
 	}
@@ -105,10 +95,9 @@ public class TerrainSpawner : MonoBehaviour {
 
         newPlatform.position = new Vector2(rightEnd.x + width / 2 + margin,
                                            rightEnd.y - height / 2 + vertStep);
-
+        newPlatform.parent = terrainContainer;
         newPlatform.gameObject.SetActive(true);
 
-        rightMostPlatform = newPlatform;
         rightEnd = GetPlatformRightCorner(newCollider);
     }
 
@@ -127,10 +116,8 @@ public class TerrainSpawner : MonoBehaviour {
 
         newPlatform.position = new Vector2(leftEnd.x - width / 2 - margin,
                                            leftEnd.y - height / 2 + vertStep);
-
+        newPlatform.parent = terrainContainer;
         newPlatform.gameObject.SetActive(true);
-
-        leftMostPlatform = newPlatform;
         leftEnd = GetPlatformLeftCorner(newCollider);
     }
 
