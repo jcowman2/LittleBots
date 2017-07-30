@@ -52,7 +52,8 @@ public class TerrainSpawner : MonoBehaviour {
         leftMostPlatform = startingPlatform;
         rightMostPlatform = startingPlatform;
 
-        //SetFallZone(startingPlatform, R.RIGHT);
+        SetFallZone(startingPlatform, R.RIGHT);
+        SetFallZone(startingPlatform, R.LEFT);
 	}
 	
 	void Update () {
@@ -111,6 +112,7 @@ public class TerrainSpawner : MonoBehaviour {
         newPlatform.gameObject.SetActive(true);
 
         SetFallZone(rightMostPlatform, R.RIGHT, newPlatform);
+        SetFallZone(newPlatform, R.RIGHT);
 
         rightEnd = GetPlatformRightCorner(newCollider);
         rightMostPlatform = newPlatform;
@@ -135,14 +137,19 @@ public class TerrainSpawner : MonoBehaviour {
         newPlatform.gameObject.SetActive(true);
 
         SetFallZone(leftMostPlatform, R.LEFT, newPlatform);
+        SetFallZone(newPlatform, R.LEFT);
 
         leftEnd = GetPlatformLeftCorner(newCollider);
         leftMostPlatform = newPlatform;
     }
 
     void SetFallZone(Transform originPlatform, string direction, Transform otherPlatform = null) {
-        Transform newFallZone = Object.Instantiate(fallZonePrefab);
-        newFallZone.gameObject.SetActive(false);
+        Transform newFallZone = originPlatform.FindChild(fallZonePrefab.name + "(Clone)" + direction);
+        if (newFallZone == null) {
+            newFallZone = Object.Instantiate(fallZonePrefab);
+            newFallZone.gameObject.SetActive(false);
+            newFallZone.name = newFallZone.name + direction;
+        }
 
         BoxCollider2D boxCollider = newFallZone.GetComponent<BoxCollider2D>();
 
