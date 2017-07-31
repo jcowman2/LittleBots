@@ -34,14 +34,21 @@ public class ChargeSlider : MonoBehaviour {
 	void Update () {
         Vector3 scale = rectTransform.localScale;
 
-        blendDeficit = Mathf.Abs(scale.x * 100 - game.chargeLevel);
-        if (blendDeficit > 0.01) {
-            tParam += Time.deltaTime * blendSpeed;
-            rectTransform.localScale = new Vector3(Mathf.Lerp(scale.x, game.chargeLevel / 100f, tParam),
-                                                   scale.y);
+        if (game.allowChargeSliderLerp) {
+            blendDeficit = Mathf.Abs(scale.x * 100 - game.chargeLevel);
+
+            if (blendDeficit > 0.01) {
+                tParam += Time.deltaTime * blendSpeed;
+                rectTransform.localScale = new Vector3(Mathf.Lerp(scale.x, game.chargeLevel / 100f, tParam),
+                                                       scale.y);
+            } else {
+                tParam = 0;
+            }
         } else {
-            tParam = 0;
+            rectTransform.localScale = new Vector3(game.chargeLevel / 100f, scale.y);
+            game.allowChargeSliderLerp = true;
         }
+        
 
         ChangeColor();
 	}

@@ -11,8 +11,12 @@ public class GameControl : MonoBehaviour {
     //** Charge Utilities **//
     [ReadOnly]
     public float chargeLevel; //between 0 and 100
+
     public float dechargeRate = 2f;
     public bool doACharge;
+
+    [ReadOnly]
+    public bool allowChargeSliderLerp = true;
 
     //** Camera Endpoints **//
     [ReadOnly]
@@ -30,8 +34,13 @@ public class GameControl : MonoBehaviour {
     [ReadOnly]
     public Vector3 cameraPos;
 
+    private StaticCapsule staticCapsule;
     private new Camera camera;
     private BackgroundControl background;
+
+    void Awake () {
+        staticCapsule = GameObject.FindGameObjectWithTag(R.STATIC_CAPSULE).GetComponent<StaticCapsule>();
+    } 
 
     void Start () {
         player = GameObject.FindGameObjectWithTag(R.PLAYER);
@@ -39,7 +48,15 @@ public class GameControl : MonoBehaviour {
         background = GetComponent<BackgroundControl>();
 
         UpdateCorners();
-        chargeLevel = 100;
+
+        if (staticCapsule.gameInProgress) { //Player died, but game is still running
+            chargeLevel = staticCapsule.inProgressChargeLevel;
+            allowChargeSliderLerp = false;
+        } else {
+            staticCapsule.gameInProgress = true;
+            chargeLevel = 100;
+        }
+        
     }
 
     void Update() {
@@ -72,16 +89,13 @@ public class GameControl : MonoBehaviour {
     }
 
     private void OnPlayerFallOutMap() {
-        RestartLevel();
+        staticCapsule.inProgressChargeLevel = chargeLevel;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void OnLittlebotFallOutMap(GameObject obj) {
         if (obj.GetComponent<LinkBehavior>().state != R.LINKED)
             GameObject.Destroy(obj);
-    }
-
-    private void RestartLevel() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void OnDrawGizmosSelected () {

@@ -20,5 +20,6 @@ public class R {
     public const string LITTLEBOT = "Littlebot";
     public const string GAME_CONTROLLER = "GameController";
     public const string MAIN_CAMERA = "MainCamera";
+    public const string STATIC_CAPSULE = "StaticCapsule";
 
 }
