@@ -1,10 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChargeSlider : MonoBehaviour {
 
     public float blendSpeed;
+
+    public Color healthyColor; //100
+    public Color midColor;     //50
+    public Color badColor;     //15
+    public Color deathColor;   //0
+
+    [ReadOnly]
+    public float relativeColor;
 
     [ReadOnly]
     public float tParam;
@@ -13,10 +22,12 @@ public class ChargeSlider : MonoBehaviour {
     public float blendDeficit;
 
     private RectTransform rectTransform;
+    private Image image;
     private GameControl game;
 	
 	void Start () {
         rectTransform = GetComponent<RectTransform>();
+        image = GetComponent<Image>();
         game = GameObject.FindGameObjectWithTag(R.GAME_CONTROLLER).GetComponent<GameControl>();
     }
 	
@@ -32,12 +43,23 @@ public class ChargeSlider : MonoBehaviour {
             tParam = 0;
         }
 
-        //rectTransform.localScale = new Vector3(game.chargeLevel / 100f, scale.y);
-		/*if (blendDeficit > 0.001) {
-            float newScale = Mathf.Min(blendDeficit * Time.deltaTime / blendRate, blendDeficit);
-            newScale *= transform.localScale.x > game.chargeLevel ? -1 : 1;
-
-            rectTransform.localScale = new Vector2(scale.x + newScale, scale.y);
-        }*/
+        ChangeColor();
 	}
+
+    private void ChangeColor() {
+        Color newColor;
+
+        if (game.chargeLevel >= 50) {
+            relativeColor = (game.chargeLevel - 50f) / 50f;
+            newColor = Color.Lerp(midColor, healthyColor, relativeColor);
+        } else if (game.chargeLevel >= 15) {
+            relativeColor = (game.chargeLevel - 15f) / 25f;
+            newColor = Color.Lerp(badColor, midColor, relativeColor);
+        } else {
+            relativeColor = game.chargeLevel / 15f;
+            newColor = Color.Lerp(deathColor, badColor, relativeColor);
+        }
+
+        image.color = newColor;
+    }
 }
