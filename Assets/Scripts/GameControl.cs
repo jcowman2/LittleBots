@@ -21,6 +21,9 @@ public class GameControl : MonoBehaviour {
     [ReadOnly]
     public Vector3 bottomRight;
 
+    [ReadOnly]
+    public Vector3 cameraPos;
+
     private new Camera camera;
 
     void Start () {
@@ -31,6 +34,7 @@ public class GameControl : MonoBehaviour {
 
     void Update() {
         UpdateCorners();
+        cameraPos = camera.transform.position;
     }
 
     void UpdateCorners () {
