@@ -62,7 +62,7 @@ public class GameControl : MonoBehaviour {
     }
 
     public void OnFallOutMap(GameObject obj) {
-        Debug.Log(obj + " fell through the map at " + obj.transform.position);
+        //Debug.Log(obj + " fell through the map at " + obj.transform.position);
 
         if (obj.CompareTag(R.PLAYER)) {
             OnPlayerFallOutMap();
