@@ -76,19 +76,13 @@ public class PlayerChainManager : MonoBehaviour {
         adjacentLinkables.RemoveAt(0);
 
         if (links.Count == 0) {
-            //link.transform.eulerAngles = new Vector3(0, 0, 0);
-            //link.transform.position = transform.position + relativeStartPoint;
             link.transform.eulerAngles = transform.eulerAngles;
             link.transform.position = actualStartPoint;
-            //Vector3 spawnPoint = transform.position + new Vector3(relativeStartPoint.x * transform.up.x, relativeStartPoint.y * transform.up.y);
-            //link.transform.position = spawnPoint;
-            //link.transform.position = ((transform.position + relativeStartPoint) - relativeStartPoint).Scale(transform.up) 
             link.MakeLink(rb);
         } else {
             LinkBehavior topLink = links[links.Count - 1];
             link.transform.eulerAngles = topLink.transform.eulerAngles;
             link.transform.position = topLink.transform.position + link.height * topLink.transform.up;
-            Debug.Log(link.transform.position);
             link.MakeLink(topLink.GetComponent<Rigidbody2D>());
         }
 
