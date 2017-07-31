@@ -21,7 +21,10 @@ public class PowerRing : MonoBehaviour {
     [ReadOnly]
     public List<LinkBehavior> botHistory;
 
+    private GameControl game;
+
 	void Start () {
+        game = GameObject.FindGameObjectWithTag(R.GAME_CONTROLLER).GetComponent<GameControl>();
         state = R.UNTOUCHED;
 	}
 	
@@ -57,6 +60,8 @@ public class PowerRing : MonoBehaviour {
             state = R.OCCUPIED;
             degenerationTime = 0;
             botsThrough++;
+
+            game.changeChargeLevel(bot.scorePoints);
         }
     }
 

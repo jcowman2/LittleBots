@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LinkBehavior : MonoBehaviour {
 
+    public int scorePoints = 1;
+
     public float height;
 
     [ReadOnly]
