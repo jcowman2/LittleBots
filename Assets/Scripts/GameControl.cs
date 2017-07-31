@@ -102,6 +102,9 @@ public class GameControl : MonoBehaviour {
         background.SetSpriteIndex(Mathf.Min(newChargeLevel / 10 + 1, 10));
 
         chargeLevel = newChargeLevel;
-        return newChargeLevel;
+        if (chargeLevel < 0) {
+            chargeLevel = 0;
+        }
+        return chargeLevel;
     }
 }
