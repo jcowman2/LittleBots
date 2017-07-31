@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
     public LayerMask groundMask;
 
     //** Ball Movement **//
+    public Rigidbody2D ball;
     public Transform ballSprite;
     public float ballAccelerateTime;
     public float ballTopRotateSpeed;
@@ -26,11 +27,11 @@ public class PlayerController : MonoBehaviour {
     [ReadOnly]
     public bool ballMoving;
 
-    private Rigidbody2D rb;
+    //private Rigidbody2D ball;
 
 	void Start () {
-        //rb = GetComponent<Rigidbody2D>();
-        rb = GameObject.FindGameObjectWithTag(R.PLAYER).GetComponent<Rigidbody2D>();
+        //ball = GetComponent<Rigidbody2D>();
+        //ball = GameObject.FindGameObjectWithTag(R.PLAYER).GetComponent<Rigidbody2D>();
         ballMoving = false;
     }
 
@@ -44,13 +45,13 @@ public class PlayerController : MonoBehaviour {
         grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundMask);
 
         if (jumped) {
-            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            ball.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             jumped = false;
             grounded = false;
         }
 
         float move = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(move * maxSpeed, rb.velocity.y);
+        ball.velocity = new Vector2(move * maxSpeed, ball.velocity.y);
 
         ballMoving = Mathf.Abs(move) > 0;
         currentBallSpeed = move * ballTopRotateSpeed;
