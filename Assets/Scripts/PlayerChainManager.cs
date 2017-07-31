@@ -59,14 +59,14 @@ public class PlayerChainManager : MonoBehaviour {
 
     private void OnTriggerEnter2D (Collider2D collision) {
         LinkBehavior link = collision.GetComponent<LinkBehavior>();
-        if (link != null && link.state == R.UNLINKED) {
+        if (link != null && link.state != R.LINKED) {
             adjacentLinkables.Add(link);
         }
     }
 
     private void OnTriggerExit2D (Collider2D collision) {
         LinkBehavior link = collision.GetComponent<LinkBehavior>();
-        if (link != null && link.state == R.UNLINKED) {
+        if (link != null && link.state != R.LINKED) {
             adjacentLinkables.Remove(link);
         }
     }
