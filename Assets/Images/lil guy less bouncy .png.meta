@@ -1,0 +1,582 @@
+fileFormatVersion: 2
+guid: 07a0331dce88ccf46838f9823a977efa
+timeCreated: 1501472147
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: lil guy less bouncy _0
+    21300002: lil guy less bouncy _1
+    21300004: lil guy less bouncy _2
+    21300006: lil guy less bouncy _3
+    21300008: lil guy less bouncy _4
+    21300010: lil guy less bouncy _5
+    21300012: lil guy less bouncy _6
+    21300014: lil guy less bouncy _7
+    21300016: lil guy less bouncy _8
+    21300018: lil guy less bouncy _9
+    21300020: lil guy less bouncy _10
+    21300022: lil guy less bouncy _11
+    21300024: lil guy less bouncy _12
+    21300026: lil guy less bouncy _13
+    21300028: lil guy less bouncy _14
+    21300030: lil guy less bouncy _15
+    21300032: lil guy less bouncy _16
+    21300034: lil guy less bouncy _17
+    21300036: lil guy less bouncy _18
+    21300038: lil guy less bouncy _19
+    21300040: lil guy less bouncy _20
+    21300042: lil guy less bouncy _21
+    21300044: lil guy less bouncy _22
+    21300046: lil guy less bouncy _23
+    21300048: lil guy less bouncy _24
+    21300050: lil guy less bouncy _25
+    21300052: lil guy less bouncy _26
+    21300054: lil guy less bouncy _27
+    21300056: lil guy less bouncy _28
+    21300058: lil guy less bouncy _29
+    21300060: lil guy less bouncy _30
+    21300062: lil guy less bouncy _31
+    21300064: lil guy less bouncy _32
+    21300066: lil guy less bouncy _33
+    21300068: lil guy less bouncy _34
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: lil guy less bouncy _0
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 1415
+        width: 144
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _1
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 1485
+        width: 134
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _2
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1483
+        width: 134
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _3
+      rect:
+        serializedVersion: 2
+        x: 873
+        y: 1485
+        width: 133
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _4
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 1410
+        width: 133
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _5
+      rect:
+        serializedVersion: 2
+        x: 1489
+        y: 1485
+        width: 134
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _6
+      rect:
+        serializedVersion: 2
+        x: 1805
+        y: 1485
+        width: 133
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _7
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 1385
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _8
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 1339
+        width: 84
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _9
+      rect:
+        serializedVersion: 2
+        x: 891
+        y: 1383
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _10
+      rect:
+        serializedVersion: 2
+        x: 1508
+        y: 1385
+        width: 84
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _11
+      rect:
+        serializedVersion: 2
+        x: 1829
+        y: 1351
+        width: 85
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _12
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 1078
+        width: 133
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _13
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 1001
+        width: 133
+        height: 265
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _14
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 1076
+        width: 134
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _15
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 1075
+        width: 134
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _16
+      rect:
+        serializedVersion: 2
+        x: 1202
+        y: 1073
+        width: 134
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _17
+      rect:
+        serializedVersion: 2
+        x: 1491
+        y: 999
+        width: 133
+        height: 264
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _18
+      rect:
+        serializedVersion: 2
+        x: 1845
+        y: 1071
+        width: 133
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _19
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 968
+        width: 83
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _20
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 980
+        width: 85
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _21
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 942
+        width: 87
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _22
+      rect:
+        serializedVersion: 2
+        x: 1219
+        y: 981
+        width: 88
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _23
+      rect:
+        serializedVersion: 2
+        x: 1863
+        y: 981
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _24
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 612
+        width: 133
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _25
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 608
+        width: 134
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _26
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 538
+        width: 134
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _27
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 606
+        width: 133
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _28
+      rect:
+        serializedVersion: 2
+        x: 1233
+        y: 606
+        width: 134
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _29
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 608
+        width: 133
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _30
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 476
+        width: 84
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _31
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 504
+        width: 84
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _32
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 505
+        width: 83
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _33
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 473
+        width: 84
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: lil guy less bouncy _34
+      rect:
+        serializedVersion: 2
+        x: 1550
+        y: 513
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
