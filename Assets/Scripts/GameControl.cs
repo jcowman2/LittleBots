@@ -11,11 +11,8 @@ public class GameControl : MonoBehaviour {
     //** Charge Utilities **//
     [ReadOnly]
     public float chargeLevel; //between 0 and 100
-
     public float dechargeRate = 2f;
-
-    [ReadOnly]
-    public float timeSinceDecharge = 0f;
+    public bool doACharge;
 
     //** Camera Endpoints **//
     [ReadOnly]
@@ -50,6 +47,11 @@ public class GameControl : MonoBehaviour {
         cameraPos = camera.transform.position;
 
         changeChargeLevel(-1 * dechargeRate * Time.deltaTime);
+
+        if (doACharge) {
+            changeChargeLevel(5);
+            doACharge = false;
+        }
     }
 
     void UpdateCorners () {
@@ -97,21 +99,15 @@ public class GameControl : MonoBehaviour {
         newChargeLevel = Mathf.Max(newChargeLevel, 0);
 
         int spriteIndex = (int)newChargeLevel / 10 + 1;
-        if (spriteIndex == 12) {
-            spriteIndex = 11;
+        if (spriteIndex == 11) {
+            spriteIndex = 10;
         } else if (newChargeLevel == 0) {
             spriteIndex = 0;
         }
 
         background.SetSpriteIndex(spriteIndex);
 
-        //background.SetSpriteIndex(Mathf.Min((int) newChargeLevel / 10 + 1, 10));
-        
         chargeLevel = newChargeLevel;
-        /*
-        if (chargeLevel < 0) {
-            chargeLevel = 0;
-        }*/
         return chargeLevel;
     }
 }
