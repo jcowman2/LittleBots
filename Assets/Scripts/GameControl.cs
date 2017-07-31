@@ -10,9 +10,9 @@ public class GameControl : MonoBehaviour {
 
     //** Charge Utilities **//
     [ReadOnly]
-    public int chargeLevel; //between 0 and 100
+    public float chargeLevel; //between 0 and 100
 
-    public float dechargeTime = 0.5f; //Seconds for losing one point of charge
+    public float dechargeRate = 2f;
 
     [ReadOnly]
     public float timeSinceDecharge = 0f;
@@ -49,11 +49,7 @@ public class GameControl : MonoBehaviour {
         UpdateCorners();
         cameraPos = camera.transform.position;
 
-        timeSinceDecharge += Time.deltaTime;
-        if (timeSinceDecharge >= dechargeTime) {
-            changeChargeLevel(-1);
-            timeSinceDecharge = 0;
-        }
+        changeChargeLevel(-1 * dechargeRate * Time.deltaTime);
     }
 
     void UpdateCorners () {
@@ -96,15 +92,26 @@ public class GameControl : MonoBehaviour {
         Gizmos.DrawSphere(bottomRight, 0.5f);
     }
 
-    public int changeChargeLevel(int amount) {
-        int newChargeLevel = Mathf.Min(chargeLevel + amount, 100);
+    public float changeChargeLevel(float amount) {
+        float newChargeLevel = Mathf.Min(chargeLevel + amount, 100f);
+        newChargeLevel = Mathf.Max(newChargeLevel, 0);
 
-        background.SetSpriteIndex(Mathf.Min(newChargeLevel / 10 + 1, 10));
+        int spriteIndex = (int)newChargeLevel / 10 + 1;
+        if (spriteIndex == 12) {
+            spriteIndex = 11;
+        } else if (newChargeLevel == 0) {
+            spriteIndex = 0;
+        }
 
+        background.SetSpriteIndex(spriteIndex);
+
+        //background.SetSpriteIndex(Mathf.Min((int) newChargeLevel / 10 + 1, 10));
+        
         chargeLevel = newChargeLevel;
+        /*
         if (chargeLevel < 0) {
             chargeLevel = 0;
-        }
+        }*/
         return chargeLevel;
     }
 }
