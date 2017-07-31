@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rb;
 
 	void Start () {
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
+        rb = GameObject.FindGameObjectWithTag(R.PLAYER).GetComponent<Rigidbody2D>();
         ballMoving = false;
     }
 
