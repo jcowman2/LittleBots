@@ -6,7 +6,10 @@ public class PlayerChainManager : MonoBehaviour {
 
     public float firePower;
     public float reactiveForceMultiplier = 1f; //how much stronger launches are felt to the player
-    public Vector3 relativeStartPoint;
+    public Vector2 relativeStartPoint;
+
+    [ReadOnly]
+    public Vector3 actualStartPoint;
 
     [ReadOnly]
     public List<LinkBehavior> links;
@@ -30,6 +33,10 @@ public class PlayerChainManager : MonoBehaviour {
         if (Input.GetButtonDown("Fire")) {
             firePressed = true;
         }
+
+        actualStartPoint = transform.position + new Vector3(transform.up.x, transform.up.y, 0)
+                                              + transform.right * relativeStartPoint.x
+                                              + transform.up * relativeStartPoint.y;
     }
 
     void FixedUpdate () {
@@ -69,8 +76,13 @@ public class PlayerChainManager : MonoBehaviour {
         adjacentLinkables.RemoveAt(0);
 
         if (links.Count == 0) {
-            link.transform.eulerAngles = new Vector3(0, 0, 0);
-            link.transform.position = transform.position + relativeStartPoint;
+            //link.transform.eulerAngles = new Vector3(0, 0, 0);
+            //link.transform.position = transform.position + relativeStartPoint;
+            link.transform.eulerAngles = transform.eulerAngles;
+            link.transform.position = actualStartPoint;
+            //Vector3 spawnPoint = transform.position + new Vector3(relativeStartPoint.x * transform.up.x, relativeStartPoint.y * transform.up.y);
+            //link.transform.position = spawnPoint;
+            //link.transform.position = ((transform.position + relativeStartPoint) - relativeStartPoint).Scale(transform.up) 
             link.MakeLink(rb);
         } else {
             LinkBehavior topLink = links[links.Count - 1];
@@ -100,5 +112,11 @@ public class PlayerChainManager : MonoBehaviour {
 
         forceVector *= reactiveForceMultiplier;
         rb.AddForce(forceVector, ForceMode2D.Impulse);
+    }
+
+    private void OnDrawGizmosSelected () {
+        Gizmos.color = Color.blue;
+        //Gizmos.DrawSphere(transform.position + new Vector3(relativeStartPoint.x * transform.up.x, relativeStartPoint.y * transform.up.y), 0.01f);
+        Gizmos.DrawLine(transform.position, actualStartPoint);
     }
 }
