@@ -39,6 +39,11 @@ public class GameControl : MonoBehaviour {
     public Text pointsText;
     public Text timeText;
 
+    public Image gameOverPanel;
+    public Text GOpointsText;
+    public Text GOtimeText;
+
+
     private StaticCapsule staticCapsule;
     private new Camera camera;
     private BackgroundControl background;
@@ -48,6 +53,8 @@ public class GameControl : MonoBehaviour {
     } 
 
     void Start () {
+        Time.timeScale = 1;
+
         player = GameObject.FindGameObjectWithTag(R.PLAYER);
         camera = GameObject.FindGameObjectWithTag(R.MAIN_CAMERA).GetComponent<Camera>();
         background = GetComponent<BackgroundControl>();
@@ -134,6 +141,7 @@ public class GameControl : MonoBehaviour {
             spriteIndex = 10;
         } else if (newChargeLevel == 0) {
             spriteIndex = 0;
+            EndGame();
         }
 
         background.SetSpriteIndex(spriteIndex);
@@ -145,5 +153,18 @@ public class GameControl : MonoBehaviour {
     public void addBotPoint() {
         staticCapsule.totalPoints++;
         pointsText.text = staticCapsule.totalPoints.ToString();
+    }
+
+    void EndGame() {
+        Time.timeScale = 0;
+
+        gameOverPanel.gameObject.SetActive(true);
+        GOpointsText.text = pointsText.text;
+        GOtimeText.text = timeText.text;
+
+        pointsText.gameObject.SetActive(false);
+        timeText.gameObject.SetActive(false);
+
+        staticCapsule.gameInProgress = false;
     }
 }
