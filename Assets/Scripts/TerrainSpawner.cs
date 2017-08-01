@@ -24,6 +24,7 @@ public class TerrainSpawner : MonoBehaviour {
     public Vector3 rightEnd;
 
     private GameControl game;
+    private RingSpawner ringSpawner;
     private Transform leftMostPlatform;
     private Transform rightMostPlatform;
 
@@ -32,6 +33,8 @@ public class TerrainSpawner : MonoBehaviour {
 
         Transform startingPlatform = terrainContainer.Find("StartingPlatform");
         Vector3 startingEnds = GetPlatformCorners(startingPlatform.GetComponent<BoxCollider2D>());
+        ringSpawner = GetComponent<RingSpawner>();
+
         leftEnd = new Vector3(startingEnds.x, startingEnds.y);
         rightEnd = new Vector3(startingEnds.z, startingEnds.y);
 
@@ -61,12 +64,12 @@ public class TerrainSpawner : MonoBehaviour {
                            box.transform.position.x + box.size.x * box.transform.localScale.x / 2);
     }
 
-    Vector3 GetPlatformRightCorner(BoxCollider2D box) {
+    public Vector3 GetPlatformRightCorner(BoxCollider2D box) {
         Vector3 result = GetPlatformCorners(box);
         return new Vector3(result.z, result.y);
     }
 
-    Vector3 GetPlatformLeftCorner(BoxCollider2D box) {
+    public Vector3 GetPlatformLeftCorner(BoxCollider2D box) {
         Vector3 result = GetPlatformCorners(box);
         return new Vector3(result.x, result.y);
     }
@@ -94,6 +97,8 @@ public class TerrainSpawner : MonoBehaviour {
 
         rightEnd = GetPlatformRightCorner(newCollider);
         rightMostPlatform = newPlatform;
+
+        ringSpawner.SpawnRings(newPlatform.gameObject, R.RIGHT, margin);
     }
 
     void GeneratePlatformLeft () {
@@ -119,6 +124,8 @@ public class TerrainSpawner : MonoBehaviour {
 
         leftEnd = GetPlatformLeftCorner(newCollider);
         leftMostPlatform = newPlatform;
+
+        ringSpawner.SpawnRings(newPlatform.gameObject, R.LEFT, margin);
     }
 
     void SetFallZone(Transform originPlatform, string direction, Transform otherPlatform = null) {

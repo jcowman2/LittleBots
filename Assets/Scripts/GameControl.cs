@@ -1,12 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour {
 
     [ReadOnly]
     public GameObject player;
+
+    //** Charge Utilities **//
+    [ReadOnly]
+    public float chargeLevel; //between 0 and 100
+
+    public float dechargeRate = 2f;
+    public bool doACharge;
+
+    [ReadOnly]
+    public bool allowChargeSliderLerp = true;
 
     //** Camera Endpoints **//
     [ReadOnly]
@@ -24,17 +35,57 @@ public class GameControl : MonoBehaviour {
     [ReadOnly]
     public Vector3 cameraPos;
 
+    //** UI **//
+    public Text pointsText;
+    public Text timeText;
+
+    private StaticCapsule staticCapsule;
     private new Camera camera;
+    private BackgroundControl background;
+
+    void Awake () {
+        staticCapsule = GameObject.FindGameObjectWithTag(R.STATIC_CAPSULE).GetComponent<StaticCapsule>();
+    } 
 
     void Start () {
         player = GameObject.FindGameObjectWithTag(R.PLAYER);
         camera = GameObject.FindGameObjectWithTag(R.MAIN_CAMERA).GetComponent<Camera>();
+        background = GetComponent<BackgroundControl>();
+
         UpdateCorners();
+
+        if (staticCapsule.gameInProgress) { //Player died, but game is still running
+            chargeLevel = staticCapsule.inProgressChargeLevel;
+            allowChargeSliderLerp = false;
+            pointsText.text = staticCapsule.totalPoints.ToString();
+        } else {
+            staticCapsule.gameInProgress = true;
+            staticCapsule.totalPoints = 0;
+            staticCapsule.totalSeconds = 0;
+
+            pointsText.text = "0";
+            timeText.text = "0:00";
+
+            chargeLevel = 100;
+        }
+        
     }
 
     void Update() {
         UpdateCorners();
         cameraPos = camera.transform.position;
+
+        changeChargeLevel(-1 * dechargeRate * Time.deltaTime);
+
+        if (doACharge) {
+            changeChargeLevel(5);
+            doACharge = false;
+        }
+
+        staticCapsule.totalSeconds += Time.deltaTime;
+        string secondsText = ((int)(staticCapsule.totalSeconds % 60)).ToString();
+        secondsText = secondsText.Length == 1 ? "0" + secondsText : secondsText;
+        timeText.text = ((int)(staticCapsule.totalSeconds / 60)).ToString() + ":" + secondsText;
     }
 
     void UpdateCorners () {
@@ -45,7 +96,7 @@ public class GameControl : MonoBehaviour {
     }
 
     public void OnFallOutMap(GameObject obj) {
-        Debug.Log(obj + " fell through the map at " + obj.transform.position);
+        //Debug.Log(obj + " fell through the map at " + obj.transform.position);
 
         if (obj.CompareTag(R.PLAYER)) {
             OnPlayerFallOutMap();
@@ -55,16 +106,13 @@ public class GameControl : MonoBehaviour {
     }
 
     private void OnPlayerFallOutMap() {
-        RestartLevel();
+        staticCapsule.inProgressChargeLevel = chargeLevel;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void OnLittlebotFallOutMap(GameObject obj) {
         if (obj.GetComponent<LinkBehavior>().state != R.LINKED)
             GameObject.Destroy(obj);
-    }
-
-    private void RestartLevel() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void OnDrawGizmosSelected () {
@@ -75,5 +123,27 @@ public class GameControl : MonoBehaviour {
         Gizmos.DrawSphere(bottomLeft, 0.5f);
         Gizmos.DrawSphere(topRight, 0.5f);
         Gizmos.DrawSphere(bottomRight, 0.5f);
+    }
+
+    public float changeChargeLevel(float amount) {
+        float newChargeLevel = Mathf.Min(chargeLevel + amount, 100f);
+        newChargeLevel = Mathf.Max(newChargeLevel, 0);
+
+        int spriteIndex = (int)newChargeLevel / 10 + 1;
+        if (spriteIndex == 11) {
+            spriteIndex = 10;
+        } else if (newChargeLevel == 0) {
+            spriteIndex = 0;
+        }
+
+        background.SetSpriteIndex(spriteIndex);
+
+        chargeLevel = newChargeLevel;
+        return chargeLevel;
+    }
+
+    public void addBotPoint() {
+        staticCapsule.totalPoints++;
+        pointsText.text = staticCapsule.totalPoints.ToString();
     }
 }
