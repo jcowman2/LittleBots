@@ -6,19 +6,19 @@ public class PowerRing : MonoBehaviour {
 
     public float timeToDestroy;
 
-    [ReadOnly]
+    //[ReadOnly]
     public float degenerationTime;
 
-    [ReadOnly]
+    //[ReadOnly]
     public string state;
 
-    [ReadOnly]
+    //[ReadOnly]
     public int botsThrough;
 
-    [ReadOnly]
+    //[ReadOnly]
     public List<LinkBehavior> occuipiedBots;
 
-    [ReadOnly]
+    //[ReadOnly]
     public List<LinkBehavior> botHistory;
 
     private GameControl game;

@@ -6,10 +6,10 @@ public class LittlebotAttribute : MonoBehaviour {
 
     public Color[] colors;
 
-    [ReadOnly]
+    //[ReadOnly]
     public Color bodyColor;
 
-    [ReadOnly]
+    //[ReadOnly]
     public Color faceColor;
 
     private SpriteRenderer bodySprite;

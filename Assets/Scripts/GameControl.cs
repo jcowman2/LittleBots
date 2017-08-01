@@ -6,33 +6,33 @@ using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour {
 
-    [ReadOnly]
+    //[ReadOnly]
     public GameObject player;
 
     //** Charge Utilities **//
-    [ReadOnly]
+    //[ReadOnly]
     public float chargeLevel; //between 0 and 100
 
     public float dechargeRate = 2f;
     public bool doACharge;
 
-    [ReadOnly]
+    //[ReadOnly]
     public bool allowChargeSliderLerp = true;
 
     //** Camera Endpoints **//
-    [ReadOnly]
+    //[ReadOnly]
     public Vector3 topLeft;
 
-    [ReadOnly]
+    //[ReadOnly]
     public Vector3 bottomLeft;
 
-    [ReadOnly]
+    //[ReadOnly]
     public Vector3 topRight;
 
-    [ReadOnly]
+    //[ReadOnly]
     public Vector3 bottomRight;
 
-    [ReadOnly]
+    //[ReadOnly]
     public Vector3 cameraPos;
 
     //** UI **//

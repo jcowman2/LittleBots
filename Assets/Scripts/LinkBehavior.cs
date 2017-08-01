@@ -8,7 +8,7 @@ public class LinkBehavior : MonoBehaviour {
 
     public float height;
 
-    [ReadOnly]
+    //[ReadOnly]
     public string state;
 
     private HingeJoint2D hinge;

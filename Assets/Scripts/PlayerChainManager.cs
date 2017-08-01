@@ -8,13 +8,13 @@ public class PlayerChainManager : MonoBehaviour {
     public float reactiveForceMultiplier = 1f; //how much stronger launches are felt to the player
     public Vector2 relativeStartPoint;
 
-    [ReadOnly]
+    //[ReadOnly]
     public Vector3 actualStartPoint;
 
-    [ReadOnly]
+    //[ReadOnly]
     public List<LinkBehavior> links;
 
-    [ReadOnly]
+    //[ReadOnly]
     public List<LinkBehavior> adjacentLinkables;
 
     private Rigidbody2D rb;

@@ -16,7 +16,7 @@ public class EntitySpawner : MonoBehaviour {
     public bool littlebotCanRotateOnSpawn;
     public int littlebotSpawnQuantity;
     public float littlebotSpawnTime;
-    [ReadOnly]
+    //[ReadOnly]
     public float littlebotTimer;
 
     private GameControl game;
