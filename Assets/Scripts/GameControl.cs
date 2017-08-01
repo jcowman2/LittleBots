@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour {
@@ -34,6 +35,10 @@ public class GameControl : MonoBehaviour {
     [ReadOnly]
     public Vector3 cameraPos;
 
+    //** UI **//
+    public Text pointsText;
+    public Text timeText;
+
     private StaticCapsule staticCapsule;
     private new Camera camera;
     private BackgroundControl background;
@@ -52,8 +57,15 @@ public class GameControl : MonoBehaviour {
         if (staticCapsule.gameInProgress) { //Player died, but game is still running
             chargeLevel = staticCapsule.inProgressChargeLevel;
             allowChargeSliderLerp = false;
+            pointsText.text = staticCapsule.totalPoints.ToString();
         } else {
             staticCapsule.gameInProgress = true;
+            staticCapsule.totalPoints = 0;
+            staticCapsule.totalSeconds = 0;
+
+            pointsText.text = "0";
+            timeText.text = "0:00";
+
             chargeLevel = 100;
         }
         
@@ -69,6 +81,11 @@ public class GameControl : MonoBehaviour {
             changeChargeLevel(5);
             doACharge = false;
         }
+
+        staticCapsule.totalSeconds += Time.deltaTime;
+        string secondsText = ((int)(staticCapsule.totalSeconds % 60)).ToString();
+        secondsText = secondsText.Length == 1 ? "0" + secondsText : secondsText;
+        timeText.text = ((int)(staticCapsule.totalSeconds / 60)).ToString() + ":" + secondsText;
     }
 
     void UpdateCorners () {
@@ -123,5 +140,10 @@ public class GameControl : MonoBehaviour {
 
         chargeLevel = newChargeLevel;
         return chargeLevel;
+    }
+
+    public void addBotPoint() {
+        staticCapsule.totalPoints++;
+        pointsText.text = staticCapsule.totalPoints.ToString();
     }
 }

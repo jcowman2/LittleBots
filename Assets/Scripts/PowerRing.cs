@@ -62,6 +62,7 @@ public class PowerRing : MonoBehaviour {
             botsThrough++;
 
             game.changeChargeLevel(bot.scorePoints);
+            game.addBotPoint();
         }
     }
 

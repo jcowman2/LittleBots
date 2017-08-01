@@ -10,6 +10,12 @@ public class StaticCapsule : MonoBehaviour {
     [ReadOnly]
     public float inProgressChargeLevel;
 
+    [ReadOnly]
+    public int totalPoints;
+
+    [ReadOnly]
+    public float totalSeconds;
+
     void Awake () {
         DontDestroyOnLoad(transform.gameObject);
     }
