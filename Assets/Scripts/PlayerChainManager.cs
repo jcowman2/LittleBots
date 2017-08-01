@@ -82,7 +82,8 @@ public class PlayerChainManager : MonoBehaviour {
         } else {
             LinkBehavior topLink = links[links.Count - 1];
             link.transform.eulerAngles = topLink.transform.eulerAngles;
-            link.transform.position = topLink.transform.position + link.height * topLink.transform.up;
+            //link.transform.position = topLink.transform.position + link.height * topLink.transform.up;
+            link.transform.position = topLink.transform.position + (link.height / 2 + topLink.height / 2) * topLink.transform.up;
             link.MakeLink(topLink.GetComponent<Rigidbody2D>());
         }
 
