@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class LinkBehavior : MonoBehaviour {
 
+    public int scorePoints = 1;
+
     public float height;
 
-    [ReadOnly]
+    //[ReadOnly]
     public string state;
 
     private HingeJoint2D hinge;
@@ -14,7 +16,7 @@ public class LinkBehavior : MonoBehaviour {
 	void Start () {
         hinge = GetComponent<HingeJoint2D>();
         hinge.enabled = false;
-        state = R.UNLINKED;
+        state = R.NEWBORN;
 	}
 	
 	public void MakeLink(Rigidbody2D link) {

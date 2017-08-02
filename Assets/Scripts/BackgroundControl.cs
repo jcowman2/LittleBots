@@ -4,33 +4,51 @@ using UnityEngine;
 
 public class BackgroundControl : MonoBehaviour {
 
-    public Transform backgroundPrefab;
+    public Transform backgroundInstance;
 
-    [ReadOnly]
+    public List<Sprite> sprites; //list of possible sprites
+
+    //[ReadOnly]
+    public int currentSpriteIndex = 0;
+
+    //[ReadOnly]
     public float width;
 
-    [ReadOnly]
+    //[ReadOnly]
     public float height;
 
-    [ReadOnly]
+    //[ReadOnly]
     public Vector3 lastCameraMove;
 
     private GameControl game;
+    private SpriteRenderer spriteRenderer;
 
 	void Start () {
         game = GetComponent<GameControl>();
 
-        SpriteRenderer sprite = backgroundPrefab.GetComponent<SpriteRenderer>();
-        width = sprite.bounds.size.x;
-        height = sprite.bounds.size.y;
+        spriteRenderer = backgroundInstance.GetComponent<SpriteRenderer>();
+        width = spriteRenderer.bounds.size.x;
+        height = spriteRenderer.bounds.size.y;
+
+        if (sprites.Count > 0) {
+            spriteRenderer.sprite = sprites[sprites.Count - 1];
+            currentSpriteIndex = sprites.Count - 1;
+        }
 	}
 	
 	
 	void Update () {
-        backgroundPrefab.position = new Vector3(backgroundPrefab.position.x + game.cameraPos.x - lastCameraMove.x,
-                                                backgroundPrefab.position.y + game.cameraPos.y - lastCameraMove.y,
-                                                backgroundPrefab.position.z);
+        backgroundInstance.position = new Vector3(backgroundInstance.position.x + game.cameraPos.x - lastCameraMove.x,
+                                                  backgroundInstance.position.y + game.cameraPos.y - lastCameraMove.y,
+                                                  backgroundInstance.position.z);
         lastCameraMove = game.cameraPos;
 	}
+
+    public void SetSpriteIndex(int index) {
+        if (index != currentSpriteIndex) {
+            spriteRenderer.sprite = sprites[index];
+            currentSpriteIndex = index;
+        }
+    }
 
 }

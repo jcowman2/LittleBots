@@ -7,9 +7,9 @@ public class PlayerController : MonoBehaviour {
     //** Base Movement **//
     public float maxSpeed = 10f;
     public float jumpForce = 700f;
-    [ReadOnly]
+    //[ReadOnly]
     public bool grounded = false;
-    [ReadOnly]
+    //[ReadOnly]
     public bool jumped = false;
 
     //** Collision Detection **//
@@ -22,9 +22,9 @@ public class PlayerController : MonoBehaviour {
     public Transform ballSprite;
     public float ballAccelerateTime;
     public float ballTopRotateSpeed;
-    [ReadOnly]
+    //[ReadOnly]
     public float currentBallSpeed;
-    [ReadOnly]
+    //[ReadOnly]
     public bool ballMoving;
 
     //private Rigidbody2D ball;

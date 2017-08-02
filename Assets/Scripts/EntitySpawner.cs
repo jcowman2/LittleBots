@@ -10,12 +10,13 @@ public class EntitySpawner : MonoBehaviour {
 
     public bool spawnLittlebot;
     public Transform littlebotPrefab;
+    public List<Transform> littlebots;
     public Vector2 littlebotSpawnForceRange;
     public Vector2 littlebotSpawnTorqueRange;
     public bool littlebotCanRotateOnSpawn;
     public int littlebotSpawnQuantity;
     public float littlebotSpawnTime;
-    [ReadOnly]
+    //[ReadOnly]
     public float littlebotTimer;
 
     private GameControl game;
@@ -41,13 +42,17 @@ public class EntitySpawner : MonoBehaviour {
         while (num-- > 0) {
             Vector3 pos = new Vector2(Random.Range(game.topLeft.x + spawnRectBoundsX.x, game.topRight.x + spawnRectBoundsX.y),
                                       Random.Range(game.topLeft.y + spawnRectBoundsY.x, game.topRight.y + spawnRectBoundsY.y));
-            Transform newBot = Object.Instantiate(littlebotPrefab, pos, Quaternion.identity);
+            Transform newBot;
+            if (littlebots.Count > 0) {
+                newBot = Object.Instantiate(littlebots[Random.Range(0, littlebots.Count)], pos, Quaternion.identity);
+            } else {
+                newBot = Object.Instantiate(littlebotPrefab, pos, Quaternion.identity);
+            }
+
             newBot.eulerAngles = new Vector3(0, 0, Random.Range(0f, 360f));
 
             Rigidbody2D rb = newBot.GetComponent<Rigidbody2D>();
             rb.AddForce(newBot.up * -1 * Random.Range(littlebotSpawnForceRange.x, littlebotSpawnForceRange.y));
-            //rb.AddForce(new Vector2(Random.Range(littlebotSpawnForceRange.x, littlebotSpawnForceRange.y),
-            //                        Random.Range(littlebotSpawnForceRange.x, littlebotSpawnForceRange.y)), ForceMode2D.Impulse);
             rb.AddTorque(Random.Range(littlebotSpawnTorqueRange.x, littlebotSpawnTorqueRange.y));
         }
     }
