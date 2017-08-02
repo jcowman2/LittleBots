@@ -12,13 +12,13 @@ public class ChargeSlider : MonoBehaviour {
     public Color badColor;     //15
     public Color deathColor;   //0
 
-    [ReadOnly]
+    //[ReadOnly]
     public float relativeColor;
 
-    [ReadOnly]
+    //[ReadOnly]
     public float tParam;
 
-    [ReadOnly]
+    //[ReadOnly]
     public float blendDeficit;
 
     private RectTransform rectTransform;

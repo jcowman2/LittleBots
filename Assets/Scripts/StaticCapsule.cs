@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class StaticCapsule : MonoBehaviour {
 
-    [ReadOnly]
+    //[ReadOnly]
     public bool gameInProgress;
 
-    [ReadOnly]
+    //[ReadOnly]
     public float inProgressChargeLevel;
 
-    [ReadOnly]
+    //[ReadOnly]
     public int totalPoints;
 
-    [ReadOnly]
+    //[ReadOnly]
     public float totalSeconds;
 
     void Awake () {

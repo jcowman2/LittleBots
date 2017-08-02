@@ -8,16 +8,16 @@ public class BackgroundControl : MonoBehaviour {
 
     public List<Sprite> sprites; //list of possible sprites
 
-    [ReadOnly]
+    //[ReadOnly]
     public int currentSpriteIndex = 0;
 
-    [ReadOnly]
+    //[ReadOnly]
     public float width;
 
-    [ReadOnly]
+    //[ReadOnly]
     public float height;
 
-    [ReadOnly]
+    //[ReadOnly]
     public Vector3 lastCameraMove;
 
     private GameControl game;

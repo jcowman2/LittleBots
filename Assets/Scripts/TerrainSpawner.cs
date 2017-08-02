@@ -17,10 +17,10 @@ public class TerrainSpawner : MonoBehaviour {
     public Vector2 platformWidthRange; //Scale, not units
 
     //** Platform Bounds **//
-    [ReadOnly]
+    //[ReadOnly]
     public Vector3 leftEnd;
 
-    [ReadOnly]
+    //[ReadOnly]
     public Vector3 rightEnd;
 
     private GameControl game;
